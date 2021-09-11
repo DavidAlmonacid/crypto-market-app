@@ -1,27 +1,27 @@
 <script>
-const titles = ['Rank', 'Coin', 'Price', 'Price change']
-let coins = []
-let filteredCoins = []
+  const titles = ['Rank', 'Coin', 'Price', 'Price change']
+  let coins = []
+  let filteredCoins = []
 
-const loadCoins = async () => {
-  const res = await fetch(
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1'
-  )
+  const loadCoins = async () => {
+    const res = await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1'
+    )
 
-  const data = await res.json()
-  console.log(data)
-  coins = data
-  filteredCoins = data
-}
-loadCoins()
+    const data = await res.json()
+    console.log(data)
+    coins = data
+    filteredCoins = data
+  }
+  loadCoins()
 
-const searchCoin = (value) => {
-  filteredCoins = coins.filter(
-    (coin) =>
-      coin.name.toLowerCase().includes(value.toLowerCase()) ||
-      coin.symbol.toLowerCase().includes(value.toLowerCase())
-  )
-}
+  const searchCoin = (value) => {
+    filteredCoins = coins.filter(
+      (coin) =>
+        coin.name.toLowerCase().includes(value.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(value.toLowerCase())
+    )
+  }
 </script>
 
 <div class="headerContainer">
@@ -82,13 +82,15 @@ const searchCoin = (value) => {
             <span class="tableCoins__coinName">{coin.name}</span>
             <span class="tableCoins__coinSymbol">{coin.symbol}</span>
           </td>
-          <td class="tableCoins__price">${coin.current_price.toLocaleString()}</td>
+          <td class="tableCoins__price">
+            $<span>{coin.current_price.toLocaleString()}</span>
+          </td>
           <td
             class={coin.price_change_percentage_24h > 0
               ? 'tableCoins__priceChange tableCoins__priceChange--textSuccess'
               : 'tableCoins__priceChange tableCoins__priceChange--textDanger'}
           >
-            {coin.price_change_percentage_24h.toFixed(3)}%
+            <span>{coin.price_change_percentage_24h.toFixed(3)}</span>%
           </td>
         </tr>
       {/each}
@@ -97,125 +99,124 @@ const searchCoin = (value) => {
 </main>
 
 <style>
-/* start header styles */
-
-.headerContainer {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 0 5px 15px;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #1e212b;
-  border-radius: 12px;
-}
-
-.header__title {
-  font-size: 22px;
-  text-align: center;
-}
-
-.header__inputContainer {
-  display: flex;
-  align-items: center;
-  background-color: #2a2e3c;
-  border-radius: 7px;
-  margin: 12px;
-}
-
-.header__searchIcon {
-  box-sizing: content-box;
-  padding: 0 3px 0 9px;
-}
-
-.header__input {
-  box-sizing: content-box;
-  width: 200px;
-  height: 23px;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 1px 5px;
-  background-color: #2a2e3c;
-  border: 0;
-  border-radius: 7px;
-  outline: 0;
-}
-
-.header__input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* start table styles */
-.tableCoins {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 425px) {
-  .tableCoins {
-    width: auto;
-    min-width: 408.22px;
+  /* start header styles */
+  .headerContainer {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 5px 15px;
   }
-}
 
-.tableCoins__headRow > [class*='tableCoins'],
-.tableCoins__bodyRow > [class*='tableCoins'] {
-  padding: 3px;
-}
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #1e212b;
+    border-radius: 12px;
+  }
 
-.tableCoins__headRow :nth-child(2) {
-  text-align: left;
-  padding: 3px 17px;
-}
+  .header__title {
+    font-size: 22px;
+    text-align: center;
+  }
 
-.tableCoins__body > [class*='bodyRow']:nth-child(2n + 1) {
-  background-color: #2a2e3c;
-}
+  .header__inputContainer {
+    display: flex;
+    align-items: center;
+    background-color: #2a2e3c;
+    border-radius: 7px;
+    margin: 12px;
+  }
 
-.tableCoins__body > [class*='bodyRow']:nth-child(2n + 1):hover {
-  background-color: #363b4d;
-}
+  .header__searchIcon {
+    box-sizing: content-box;
+    padding: 0 3px 0 9px;
+  }
 
-.tableCoins__body > [class*='bodyRow']:nth-child(2n + 2) {
-  background-color: #322a3c;
-}
+  .header__input {
+    box-sizing: content-box;
+    width: 200px;
+    height: 23px;
+    font: inherit;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 1px 5px;
+    background-color: #2a2e3c;
+    border: 0;
+    border-radius: 7px;
+    outline: 0;
+  }
 
-.tableCoins__body > [class*='bodyRow']:nth-child(2n + 2):hover {
-  background-color: #40364d;
-}
+  .header__input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
 
-.tableCoins__rank {
-  opacity: 0.5;
-  text-align: center;
-}
+  /* start table styles */
+  .tableCoins {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
 
-.tableCoins__coin {
-  display: flex;
-  align-items: center;
-}
+  @media screen and (min-width: 425px) {
+    .tableCoins {
+      width: auto;
+      min-width: 408.22px;
+    }
+  }
 
-.tableCoins__coin :nth-child(1n + 2) {
-  margin-left: 7px;
-}
+  .tableCoins__headRow > [class*='tableCoins'],
+  .tableCoins__bodyRow > [class*='tableCoins'] {
+    padding: 3px;
+  }
 
-.tableCoins__coinSymbol {
-  opacity: 0.5;
-  text-transform: uppercase;
-}
+  .tableCoins__headRow :nth-child(2) {
+    text-align: left;
+    padding: 3px 17px;
+  }
 
-[class*='price'] {
-  text-align: right;
-}
+  .tableCoins__body > [class*='bodyRow']:nth-child(2n + 1) {
+    background-color: #2a2e3c;
+  }
 
-.tableCoins__priceChange--textSuccess {
-  color: #34b21a;
-}
+  .tableCoins__body > [class*='bodyRow']:nth-child(2n + 1):hover {
+    background-color: #363b4d;
+  }
 
-.tableCoins__priceChange--textDanger {
-  color: #f66;
-}
+  .tableCoins__body > [class*='bodyRow']:nth-child(2n + 2) {
+    background-color: #322a3c;
+  }
+
+  .tableCoins__body > [class*='bodyRow']:nth-child(2n + 2):hover {
+    background-color: #40364d;
+  }
+
+  .tableCoins__rank {
+    opacity: 0.5;
+    text-align: center;
+  }
+
+  .tableCoins__coin {
+    display: flex;
+    align-items: center;
+  }
+
+  .tableCoins__coin :nth-child(1n + 2) {
+    margin-left: 7px;
+  }
+
+  .tableCoins__coinSymbol {
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  [class*='price'] {
+    text-align: right;
+  }
+
+  .tableCoins__priceChange--textSuccess {
+    color: #34b21a;
+  }
+
+  .tableCoins__priceChange--textDanger {
+    color: #f66;
+  }
 </style>
