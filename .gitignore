@@ -4,7 +4,3 @@
 .DS_Store
 .vscode
 .prettierignore
-
-rollup.config.js
-package.json
-public/index.html

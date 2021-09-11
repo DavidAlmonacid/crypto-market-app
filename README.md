@@ -1,14 +1,16 @@
 # Crypto Market App
 
-This project was inspired by Platzi's HTML and CSS practical course.
+Project created following Fazt Code's [Svelte Precios Crypto | Svelte & CoinGecko API](https://youtu.be/uGhiM19d950) video.
+This project uses the CoinGecko API.
 
 [![Frame1.png](https://i.postimg.cc/qM7KnwyL/Frame1.png)](https://postimg.cc/z393Yndb)
 
 ## Built with
 
-- Semantic HTML5 markup
-- Flexbox
+- Svelte framework
 - Mobile-first workflow
+- CSS Flexbox
+- Semantic HTML
 
 ## Author
 
