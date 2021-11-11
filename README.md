@@ -3,7 +3,7 @@
 Project created following Fazt Code's [Svelte Precios Crypto | Svelte & CoinGecko API](https://youtu.be/uGhiM19d950) video.
 This project uses the CoinGecko API.
 
-[![Frame1.png](https://i.postimg.cc/qM7KnwyL/Frame1.png)](https://postimg.cc/z393Yndb)
+![Frame1.png](https://i.postimg.cc/qM7KnwyL/Frame1.png)
 
 ## Built with
 
