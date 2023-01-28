@@ -5,15 +5,17 @@
   let coins = [];
   let filteredCoins = [];
 
-  const loadCoins = async () => {
-    const response = await fetch(API);
-    const data = await response.json();
-    console.log(data);
-
-    coins = data;
-    filteredCoins = data;
+  const getCoins = async () => {
+    try {
+      const response = await fetch(API);
+      const data = await response.json();
+      coins = data;
+      filteredCoins = data;
+    } catch (error) {
+      console.error(error);
+    }
   };
-  loadCoins();
+  getCoins();
 </script>
 
 <main>
@@ -22,35 +24,52 @@
   </header>
 
   <div>
-    <table class="coins">
-      <thead>
-        <tr class="coins__titles">
-          {#each titles as title}
-            <th class="coins__title">{title}</th>
-          {/each}
-        </tr>
-      </thead>
+    <div class="coins">
+      {#each titles as title}
+        <div>
+          <h4 class="coins-title">{title}</h4>
+        </div>
+      {/each}
 
-      <tbody class="coins__data">
-        {#each coins as coin}
-          <tr class="coin">
-            <td class="coin__rank">{coin.market_cap_rank}</td>
+      {#each coins as coin}
+        <div class="coin-rank">
+          <span>{coin.market_cap_rank}</span>
+        </div>
 
-            <td>
-              <picture>
-                <img
-                  class="coin__logo"
-                  src={coin.image}
-                  alt={coin.name}
-                  height="14"
-                />
-              </picture>
-              <span class="coin__name">{coin.name}</span>
-              <span class="coin__symbol">{coin.symbol}</span>
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
+        <div class="coin-data">
+          <picture>
+            <img
+              class="coin-logo"
+              src={coin.image}
+              alt={coin.name}
+              height="14"
+            />
+          </picture>
+          <span class="coin-name">{coin.name}</span>
+          <span class="coin-symbol">{coin.symbol}</span>
+        </div>
+
+        <div class="coin-price">
+          <span>$</span>
+          <span>{coin.current_price.toLocaleString()}</span>
+        </div>
+
+        <div
+          class={`coin-change coin-change--${
+            coin.price_change_percentage_24h > 0 ? 'up' : 'down'
+          }`}
+        >
+          <span>{coin.price_change_percentage_24h.toFixed(3)}</span>
+          <span>%</span>
+        </div>
+      {/each}
+    </div>
   </div>
 </main>
+
+<style>
+  .coins {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+</style>
