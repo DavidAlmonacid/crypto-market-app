@@ -2,3 +2,15 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  padding-bottom: 32px;
+  min-height: 100vh;
+  background-color: #323031;
+  font: 14px 'Poppins', sans-serif;
+  color: #fff;
+}
+
+picture {
+  display: inline-flex;
+}
