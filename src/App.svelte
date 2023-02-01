@@ -1,4 +1,6 @@
 <script>
+  import Header from './lib/Header.svelte';
+
   const API =
     'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
   const titles = ['Rank', 'Coin', 'Price', 'Price change'];
@@ -19,9 +21,7 @@
 </script>
 
 <main>
-  <header>
-    <h1>CryptoMarket</h1>
-  </header>
+  <Header />
 
   <div>
     <div class="table-wrapper">
@@ -78,25 +78,8 @@
   }
 
   main > div {
-    margin-top: 32px;
-    max-height: 84vh;
+    max-height: 78vh;
     overflow: auto;
-  }
-
-  main > div::-webkit-scrollbar {
-    border-radius: 9em;
-    width: 8px;
-    height: 8px;
-    background-color: #5f5b5d;
-  }
-
-  main > div::-webkit-scrollbar-thumb {
-    border-radius: 9em;
-    background-color: #7d787a;
-  }
-
-  main > div::-webkit-scrollbar-corner {
-    display: none;
   }
 
   .table-wrapper {
@@ -157,5 +140,17 @@
 
   .coin__change--down {
     color: #f28e8e;
+  }
+
+  @media (min-width: 570px) {
+    .coins {
+      margin-left: 10px;
+    }
+  }
+
+  @media (min-width: 590px) {
+    .coins {
+      margin-left: 20px;
+    }
   }
 </style>
