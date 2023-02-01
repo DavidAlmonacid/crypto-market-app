@@ -83,6 +83,22 @@
     overflow: auto;
   }
 
+  main > div::-webkit-scrollbar {
+    border-radius: 9em;
+    width: 8px;
+    height: 8px;
+    background-color: #5f5b5d;
+  }
+
+  main > div::-webkit-scrollbar-thumb {
+    border-radius: 9em;
+    background-color: #7d787a;
+  }
+
+  main > div::-webkit-scrollbar-corner {
+    display: none;
+  }
+
   .table-wrapper {
     margin: 0 auto;
     padding: 0 12px 12px 0;
