@@ -11,6 +11,22 @@ body {
   color: #fff;
 }
 
+::-webkit-scrollbar {
+  border-radius: 9em;
+  width: 8px;
+  height: 8px;
+  background-color: #5f5b5d;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9em;
+  background-color: #7d787a;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
 picture {
   display: inline-flex;
 }
