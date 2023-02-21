@@ -30,3 +30,12 @@ body {
 picture {
   display: inline-flex;
 }
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+input::placeholder {
+  color: rgb(255 255 255 / 60%);
+}
